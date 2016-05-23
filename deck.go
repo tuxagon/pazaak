@@ -51,7 +51,7 @@ func (d *Deck) Reset() {
 }
 
 func (d *Deck) Shuffle() {
-	fmt.Println("Shuffling...")
+	debug("Shuffling deck...")
 	for i := d.Count - 1; i > 0; i-- {
 		max := i + 1
 		n, err := rand.Int(rand.Reader, big.NewInt(int64(max)))
@@ -102,14 +102,8 @@ func (d *SideDeck) String() string {
 	return d.Deck.String()
 }
 
-func handleError(e error) {
-	if e != nil {
-		log.Fatal(e)
-	}
-}
-
 func newDeck(name string, size int) []*Card {
-	fmt.Printf("Creating %s deck...\n", name)
+	debug(fmt.Sprintf("Preparing %s deck...\n", name))
 	cards := make([]*Card, size)
 	for i := 0; i < size; i++ {
 		cards[i] = &Card{
